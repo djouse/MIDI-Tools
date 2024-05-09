@@ -5,7 +5,7 @@ import pypianoroll
 import numpy as np
 from PIL import Image, ImageTk
 
-#TODO Fix issues on visualizer for the pianoroll plot
+#TODO Fix issues on visualizer for the pianoroll
 
 class MidiPlayerGUI:
     def __init__(self, master):

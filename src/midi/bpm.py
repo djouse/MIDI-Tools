@@ -1,10 +1,10 @@
 import time
 
 class Bpm:
-    def __init__(self):
+    def __init__(self, bpm):
         self.space_between_beats = 0.5
         self.last_press = time.time()
-        self.bpm = 100
+        self.bpm = bpm
         self.times = []
         self._last_update = time.time()
         self._elapsed_time = 0.0
@@ -14,6 +14,9 @@ class Bpm:
         self.finished_beat = 0
         self.first_beat = 0
         self.started_beat = 0
+    
+    def setBpm(self, bpm):
+        self.bpm=bpm
 
     def update(self):
         the_time = time.time()
