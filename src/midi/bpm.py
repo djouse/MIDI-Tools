@@ -1,4 +1,10 @@
 import time
+import pypianoroll
+import numpy as np
+import mido
+import pretty_midi
+import IPython.display
+from midi2audio import FluidSynth
 
 class Bpm:
     def __init__(self, bpm):
@@ -41,3 +47,34 @@ class Bpm:
             self.started_beat = 0
 
         self._last_closeness = closeness
+    
+    def bpmToMidiTrack(self, multitrack=None):
+        size = 10240
+        resolution = 24 #Time steps per quarter note
+        bpm = self.bpm
+        #time_step_length = 60.0 / tempo / resolution 
+        tempo =  mido.bpm2tempo(bpm)/1000
+        print(tempo)
+        #print(time_step_length)
+        track = pypianoroll.StandardTrack(name = "drums", program=0 , is_drum=True, pianoroll=np.zeros([3984, 128]))
+        #for i in size:
+        track.pianoroll[0:int(tempo):size-1, :] = 85
+        multitrack = pypianoroll.Multitrack(tracks=[track])
+        return multitrack
+    
+
+pretty_midi.PrettyMIDI("input/input.mid")
+
+pp = pypianoroll.from_pretty_midi(pretty_midi.PrettyMIDI("input/input.mid"))
+print(pp)
+
+bpm = Bpm(120)
+track = bpm.bpmToMidiTrack()
+midi = pypianoroll.to_pretty_midi(track)
+midi.write("midi_metronome.mid")
+fs = FluidSynth()
+#fs.play_midi('midi_metronome.mid')
+
+
+print(midi)
+print(track)
