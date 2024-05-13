@@ -1,0 +1,2 @@
+# Ignore the input midi files you don't want in the repo
+!.gitignore

@@ -1,4 +1,8 @@
 src/__pycache__/*
+
 src/midi/__pycache__/*
+src/midi/track_plots/track_*.png
+
 src/ui/__pycache__/*
+
 
