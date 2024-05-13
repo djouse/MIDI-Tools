@@ -3,6 +3,8 @@ import logging
 import os
 import subprocess
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
 def setup(debug_mode):
     logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s] :: %(message)s", "%Y-%m-%d %H:%M:%S")
     rootLogger = logging.getLogger()
@@ -31,6 +33,9 @@ parser.add_argument('--input', default="input.mid", type=str)
 parser.add_argument('--input_dir', default="../input", type=str)
 parser.add_argument('--log_dir', default="../log", type=str)
 args = parser.parse_args()
+
+args.input_dir = os.path.join("dir_path", args.input_dir)
+args.log_dir = os.path.join("dir_path", args.log_dir)
 
 #check if video and path exists TODO
 #check if input args are all valid and if they need debugging TODO

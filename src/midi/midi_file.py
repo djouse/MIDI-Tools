@@ -22,7 +22,7 @@ class Midi():
         self.BEAT_SIZE  = self.midi.resolution
         self.N_BEATS    = self.midi.tempo.shape[0] // self.midi.resolution
 
-        time_step_length = 60.0 / tempo / self.midi.resolution
+        #time_step_length = 60.0 / tempo / self.midi.resolution
         
     def plotter(self):
         for i, track in enumerate(self.midi.tracks):
